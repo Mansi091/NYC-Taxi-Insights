@@ -3,23 +3,23 @@ import pandas as pd
 print("Loading data for EDA...")
 df = pd.read_parquet(r"../data/yellow_tripdata_2026-01.parquet")
 
-print("\n==============================")
-print("     EXPLORATORY DATA ANALYSIS")
-print("==============================\n")
 
-print("--- 1. DATA SHAPE (Rows, Columns) ---")
+print("EXPLORATORY DATA ANALYSIS")
+
+
+print("data shape")
 print(df.shape)
 
-print("\n--- 2. DATA TYPES & NON-NULL COUNTS ---")
+print("\n data types and null counts")
 print(df.info())
 
-print("\n--- 3. MISSING VALUES ---")
+print("\n missing values")
 print(df.isnull().sum())
 
-print("\n--- 4. SUMMARY STATISTICS (Numerical Columns) ---")
+print("\n summary statistics")
 print(df.describe())
 
-print("\n--- 5. CHECKING FOR DUPLICATES ---")
+print("\n duplicate values " )
 print(f"Total duplicate rows: {df.duplicated().sum()}")
 
 print("Dropping missing rows while the count of missing rows is very large")
