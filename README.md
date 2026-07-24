@@ -15,6 +15,64 @@
 ## 🗄️ Data Modeling (Star Schema)
 The core of this project revolves around architecting a relational data model by decomposing the flat dataset into a highly efficient Star Schema. 
 
+```mermaid
+erDiagram
+    fact_table {
+        int vendor_key FK
+        int datetime_key FK
+        int payment_key FK
+        int pickup_location_key FK
+        int dropoff_location_key FK
+        float passenger_count
+        float trip_distance
+        float fare_amount
+        float tip_amount
+        float total_amount
+    }
+
+    vendor_dim {
+        int vendor_key PK
+        int VendorID
+        string vendor_name
+    }
+
+    datetime_dim {
+        int datetime_key PK
+        datetime tpep_pickup_datetime
+        int year
+        int month
+        int day
+        int hour
+        int minute
+        string weekday
+        int quarter
+    }
+
+    payment_dim {
+        int payment_key PK
+        int payment_type
+        string payment_name
+    }
+
+    location_dim {
+        int location_key PK
+        int location_id
+    }
+
+    rate_dim {
+        int rate_code_key PK
+        int RatecodeID
+        string rate_name
+    }
+
+    fact_table }|--|| vendor_dim : "vendor"
+    fact_table }|--|| datetime_dim : "time"
+    fact_table }|--|| payment_dim : "payment"
+    fact_table }|--|| rate_dim : "rate"
+    fact_table }|--|| location_dim : "pickup"
+    fact_table }|--|| location_dim : "dropoff"
+```
+
 - **Fact Table**: `fact_table` (Contains quantitative metrics like `fare_amount`, `tip_amount`, `total_amount`, `passenger_count`, `trip_distance` and foreign keys to all dimension tables)
 - **Dimension Tables**: 
   - `datetime_dim`
