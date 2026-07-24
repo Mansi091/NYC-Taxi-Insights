@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mage_data_pipeline
+    ports:
+      - "6789:6789"
+    volumes:
+      - .:/app
+    environment:
+      - MAGE_REPO_PATH=/app/data_pipeline
+    command: mage start data_pipeline
+    restart: on-failure
