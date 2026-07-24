@@ -1,7 +1,7 @@
 [project]
-name = "uber"
+name = "nyc-taxi-insights"
 version = "0.1.0"
-description = "Add your description here"
+description = "Data engineering pipeline for NYC Taxi data"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
