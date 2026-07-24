@@ -15,3 +15,9 @@ data/*.csv
 
 # Mage AI local state
 data_pipeline/mage_data/
+.mage_data/
+
+# Security and Credentials
+.env
+*.json
+*-key.json
