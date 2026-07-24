@@ -1,0 +1,16 @@
+[project]
+name = "uber"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "db-dtypes",
+    "fastparquet",
+    "google-cloud-bigquery",
+    "mage-ai>=0.9.79",
+    "numpy",
+    "pandas<2.2",
+    "pandas-gbq",
+    "pyarrow",
+]
