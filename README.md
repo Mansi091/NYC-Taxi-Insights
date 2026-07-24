@@ -1,4 +1,4 @@
-# 🚕 NYC Taxi Insights: End-to-End Data Engineering Pipeline
+# 🚕 NYC Taxi Insights
 
 📊 **[View Interactive Dashboard Here](https://datastudio.google.com/reporting/1bb78609-0d06-4a9b-a945-969de96fddc7)**
 
