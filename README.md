@@ -14,6 +14,9 @@
 
 ## 🗄️ Data Modeling (Star Schema)
 The core of this project revolves around architecting a relational data model by decomposing the flat dataset into a highly efficient Star Schema. 
+
+![Star Schema Architecture Diagram](images/schema_design.png)
+
 - **Fact Table**: `fact_table` (Contains quantitative metrics like `fare_amount`, `tip_amount`, `total_amount`, and foreign keys to all dimension tables)
 - **Dimension Tables**: 
   - `datetime_dim`
