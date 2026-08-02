@@ -122,3 +122,35 @@ erDiagram
 
 ## 📁 Data Dictionary
 A cheatsheet explaining all the dataset columns is included in this repository as `data_dictionary_trip_records_yellow.pdf`.
+
+## ✅ Data Quality, SQL & Reporting Additions
+
+To round out the pipeline with data-analyst-facing deliverables, the following were added:
+
+- **`sql/analytical_queries.sql`** — Analytical SQL against the BigQuery star schema: joins, CTEs, aggregations, CASE statements, and window functions (RANK, LAG, PARTITION BY) covering revenue trends, top pickup zones, payment behavior, and vendor performance. Includes a SQL-native data quality spot-check query as well.
+
+- **`scripts/data_quality_check.py`** — A reusable data profiling and validation utility (usable standalone or imported into the Mage AI transformer). It:
+  - Profiles every column (dtype, null %, cardinality)
+  - Detects exact-duplicate rows
+  - Validates business rules (negative fares, zero-distance trips, missing passenger counts, inconsistent totals, dropoff-before-pickup)
+  - Produces a before/after cleansing summary (rows removed, % retained) for auditability
+  - Outputs `data/dq_report.json`, `data/dq_column_profile.csv`, and `data/cleaned_tripdata.parquet`
+
+  Run it with:
+  ```bash
+  python scripts/data_quality_check.py data/<your_file>.parquet
+  ```
+
+- **`scripts/generate_excel_report.py`** — Builds `data/taxi_analysis_report.xlsx` from the cleaned data with:
+  - A `Summary_Pivot` sheet (revenue by hour x payment type)
+  - A `VLOOKUP_Demo` sheet with **live Excel VLOOKUP and XLOOKUP formulas** (not pre-computed values) pulling payment names from a `Payment_Lookup` sheet
+
+  Run it with:
+  ```bash
+  python scripts/generate_excel_report.py
+  ```
+
+- **`scripts/make_sample_data.py`** — Generates a small synthetic sample dataset (`data/sample_tripdata.parquet`) with intentionally injected data quality issues (nulls, duplicates, negative fares, zero-distance trips), so `data_quality_check.py` and `generate_excel_report.py` can be run and demoed locally without needing the full ~1GB NYC TLC parquet file.
+  ```bash
+  python scripts/make_sample_data.py
+  ```
